@@ -1,57 +1,191 @@
-@font-face {
+* {
+    box-sizing: border-box;
     font-family: Bahnschrift;
-    src: url(img/Bahnschrift.TTF);
+    color: white;
 }
 
 body {
-    background-image: linear-gradient(to bottom right,#6868AC, #CF9893, #119DA4, #FDE789);
-    background-repeat:no-repeat;
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-    height: 100vh;
-}
-@keyframes gradient {
-   0%{
-    background-position: 0% 50%;
-   }
-   50%{
-    background-position: 100% 50%;
-   } 
-   100%{
-    background-position: 0% 50%;
-   }
+    background-image: linear-gradient(to bottom right, #ffd0e6, #f0c39c);
+    background-repeat: no-repeat;
+    background-size: 200% 200%;
+    background-position: center;
+
 }
 
-.Caption h1 {
-    text-align: center;
-    color: white;
-    font-size: 60px;
-    font-weight: lighter;
+@font-face {
     font-family: Bahnschrift;
-    text-decoration: underline;
+    src: url(img/bahnschrift.TTF);
 }
 
-.socialbox {
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'header header header header header header'
+        'left middle middle middle middle right'
+        'footer footer footer footer footer footer';
+    grid-column-gap: 10px;
+}
+
+.left,
+.middle,
+.right,
+.footer,
+.header {
+    padding: 10px;
     border-radius: 10px;
-    width: 350px;
-    height: 550px;
-    padding: 2px;
-    margin-top: 30px;
-    background: rgb(44, 43, 43, 0.8);
-    color: white;
-    position: relative;
+    margin: 10px;
 }
 
-.socialbox h2 {
-    font-family: Bahnschrift;
-    font-size: xx-large;
-    color: black;
+.header {
+    grid-area: header;
     text-align: center;
-    text-decoration: red  underline;
+    background-color: rgba(78, 128, 125, 0.8);
 }
-.socialbox ul a {
-    color: aquamarine;
-    font-weight:900;
+
+.left {
+    grid-area: left;
+}
+
+.middle {
+    grid-area: middle;
+}
+
+.middle img {
+    border-radius: 20px;
+}
+.left,.right{
+    background-color: rgba(157, 73, 54, 0.8);
+    text-align: center;
+    font-size: x-large;
+    text-transform: capitalize;
+}
+.right {
+    grid-area: right;
+}
+
+.footer {
+    grid-area: footer;
+    background-color: rgba(78, 128, 125, 0.8);
+    font-size: x-large;
+    height: 225px;
+}
+
+@media (max-width: 900px) {
+    .grid-container {
+        grid-template-areas:
+            'header header header header header header'
+            'left left left right right right'
+            'middle middle middle middle middle middle'
+            'footer footer footer footer footer footer';
+    }
+
+    .right,
+    .left {
+        width: auto;
+        text-align: center;
+        font-size: larger;
+    }
+}
+
+/*Sliders for sights*/
+.slides-container-main {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+.slides {
+    display: none;
+}
+.slidetext {
+    display: none;
+}
+
+
+.slide-desc {
+    display: none;
+}
+
+.slides img:hover+.slide-desc {
+    display: block;
+    font-family: Bahnschrift;
+    color: white;
+}
+
+.slides-start {
+    display: block;
+}
+
+.slide-caption {
+    color: #f2f2f2;
+    font-size: 40px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
     text-align: center;
     font-family: Bahnschrift;
+    text-transform: capitalize;
+    text-shadow: 2px 2px 8px black;
+}
+
+.slide-number {
+    color: #f2f2f2;
+    font-size: 12px;
+    font-family: Bahnschrift;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.dots {
+    cursor: pointer;
+}
+
+.active,
+.dots:hover {
+    background-color: #494949;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
